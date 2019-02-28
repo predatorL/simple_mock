@@ -1,0 +1,4 @@
+window.LangPack = {
+    "enus": {},
+    "zhcn": {}
+}
