@@ -1,4 +1,0 @@
-window.LangPack = {
-    "enus": {},
-    "zhcn": {}
-}
