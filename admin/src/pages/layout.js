@@ -6,10 +6,9 @@ import HeaderContent from '@/mods/layout/header';
 const { Header, Content } = Layout;
 // system
 import login from './login';
-import register from './register';
 // 页面
-import create from './create';
-import list from './list';
+import project from './project';
+// import list from './list';
 import env from './env';
 
 import RouteOther from './other/route';
@@ -39,9 +38,9 @@ export default class View extends React.Component {
                     <HeaderContent></HeaderContent>
                 </Header>
                 <Content id="main">
-                    <Route path="/" exact component={create} />
-                    <Route path="/create" component={create} />
-                    <Route path="/list" component={list} />
+                    <Route path="/" exact component={project} />
+                    <Route path="/project" component={project} />
+                    {/* <Route path="/list" component={list} /> */}
                     <Route path="/env" component={env} />
                     <Route path="/login" component={login} />
                     <RouteOther />

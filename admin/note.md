@@ -1,8 +1,24 @@
-## 问题
-- 看一下rc-form 看看那个 getFieldDecorator, getFieldsError, getFieldError, isFieldTouched 怎么实现的
--
+## 项目结构及前端功能列表
+* 项目管理
+    * 项目列表
+    * 创建项目
+    * 添加规则
+    * 编辑规则
+* 环境管理
+    * 环境列表
+    * 创建环境
+    * 编辑环境
 
-## 笔记
-###　ｍｏbx
-- mobx创建store, mobx-react负责绑定、注入，
-- mobx-react的Provider负责讲store注入到根部，便于inject到各个组件中
+====
+##  需求细分
+
+### 项目列表
+* 需求
+    * 获取所有创建项目
+    * 添加过滤条件(2期)
+        * 创建人
+            * 本人
+            * 所有
+        * 名称
+            * 关键字查找
+    * 添加分页功能(2期)
