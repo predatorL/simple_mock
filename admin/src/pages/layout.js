@@ -8,7 +8,7 @@ const { Header, Content } = Layout;
 import login from './login';
 // 页面
 import project from './project';
-// import list from './list';
+import rule from './rule';
 import env from './env';
 
 import RouteOther from './other/route';
@@ -39,10 +39,11 @@ export default class View extends React.Component {
                 </Header>
                 <Content id="main">
                     <Route path="/" exact component={project} />
-                    <Route path="/project" component={project} />
+                    <Route path="/project" exact component={project} />
+                    <Route path="/project/:id/rule" exact component={rule} />
                     {/* <Route path="/list" component={list} /> */}
-                    <Route path="/env" component={env} />
-                    <Route path="/login" component={login} />
+                    <Route path="/env" exact component={env} />
+                    <Route path="/login" exact component={login} />
                     <RouteOther />
                 </Content>
             </div>

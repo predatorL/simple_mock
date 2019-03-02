@@ -37,6 +37,13 @@ module.exports = appInfo => {
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
     };
 
+    config.mongoose = {
+        client: {
+            url: 'mongodb://127.0.0.1:27017/simple_mock',
+            options: {},
+        },
+    };
+
     return {
         ...config,
         ...userConfig

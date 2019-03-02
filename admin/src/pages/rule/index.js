@@ -2,18 +2,26 @@ import React from 'react';
 import { Button } from 'antd';
 import CreatePro from './create';
 import List from './list';
+import history from '@/history';
+import Api from '@/api';
 
 class View extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        const {match} = props;
+        console.log(props.match);
     }
 
     state = {
-        modalVisible: false
+        modalVisible: false,
+        loading: true
     }
 
     render() {
         const { state } = this;
+        if(state.loading) {
+            return null;
+        }
         return (
             <div className="view-project">
                 <Button type="primary"  onClick={e => {

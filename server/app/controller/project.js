@@ -7,12 +7,12 @@ class HomeController extends Controller {
     // 查询所有项目列表
     async getList() {
         const { ctx } = this;
+        const result = await ctx.model.Project.find();
+        console.log(result)
         ctx.body = JSON.stringify({
             status: 200,
             attachment: {
-                data: [
-                    {id: 1, name: 2323, root: 222}
-                ]
+                data: result
             }
         });
     }
@@ -33,13 +33,18 @@ class HomeController extends Controller {
     // 创建项目
     async createPro() {
         const { ctx } = this;
+        let _projectInfo = ctx.request.body;
+        let _project = new ctx.model.Project(_projectInfo)
+        const result = await _project.save(err => {
+            if(err) {
+                console.error('ctx.model.Project', err)
+            }
+        });
+        // console.log('result', result)
         ctx.body = JSON.stringify({
             status: 200,
-            attachment: {
-                data: [
-                    {id: 1, name: 2323, root: 222}
-                ]
-            }
+            attachment: null,
+            message: '',
         });
     }
 
