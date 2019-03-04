@@ -2,7 +2,7 @@
 
 const Controller = require('egg').Controller;
 
-class HomeController extends Controller {
+class ProjectController extends Controller {
 
     // 查询所有项目列表
     async getList() {
@@ -28,15 +28,12 @@ class HomeController extends Controller {
     // 查询单个项目信息
     async queryOne() {
         const { ctx } = this;
-        console.log(ctx.request.body)
-        // const result = await ctx.model.Project.findOne({_id: ctx.body});
-
+        const {id} = ctx.params;
+        const result = await ctx.model.Project.findOne({_id: id});
         ctx.body = JSON.stringify({
             status: 200,
             attachment: {
-                data: [
-                    {id: 1, name: 2323, root: 222}
-                ]
+                data: result
             }
         });
     }
@@ -46,7 +43,7 @@ class HomeController extends Controller {
         const { ctx } = this;
         let _projectInfo = ctx.request.body;
 
-        
+
 
         let _project = new ctx.model.Project({
             ..._projectInfo,
@@ -86,4 +83,4 @@ class HomeController extends Controller {
     }
 }
 
-module.exports = HomeController;
+module.exports = ProjectController;

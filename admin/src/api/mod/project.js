@@ -5,7 +5,7 @@ export function query(data) {
 }
 
 export function queryOne({id}) {
-    return request.get('/project' + id);
+    return request.get('/project/' + id);
 }
 
 export function create(data) {

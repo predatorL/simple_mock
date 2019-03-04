@@ -13,11 +13,11 @@ class View extends React.Component {
     state = {
         modalVisible: false,
         dataSource: [],
-        columns: listCols,
     }
 
 
     componentDidMount() {
+        console.log('project')
         this.queryList();
     }
 
@@ -55,7 +55,7 @@ class View extends React.Component {
                 </Button>
                 <CreatePro close={this.modalClose} visible={state.modalVisible}></CreatePro>
                 <List dataSource={state.dataSource}
-columns={state.columns}></List>
+columns={listCols}></List>
             </div>
         );
     }

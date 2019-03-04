@@ -1,25 +1,32 @@
 import React from "react";
-import { Form, Input, Button, Modal } from "antd";
+import { Form, Input, Button, Modal, message } from "antd";
 import Api from "@/api";
 
 class View extends React.Component {
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        Api.project.create(values).then(res => {
-          console.log(112);
+        Api.project.create(values).then(({ status, ...res }) => {
+          if (status === 200) {
+            message.success('创建项目成功');
+            this.props.close(true);
+          } else {
+            message.error('创建项目失败,' + res.message);
+          }
         });
-        console.log("Received values of form: ", values);
       }
     });
   };
 
   render() {
-    const {state, props} = this;
+    const { state, props } = this;
     const { getFieldDecorator } = this.props.form;
     return (
-      <Modal visible={props.visible} footer={null} title="创建新项目" onCancel={props.close}>
+      <Modal visible={props.visible} footer={null} title="创建新项目" onCancel={e => {
+        props.close(false)
+      }}>
         <Form onSubmit={this.handleSubmit}>
           <Form.Item>
             {getFieldDecorator("name", {
