@@ -8,11 +8,19 @@ class HomeController extends Controller {
     async getList() {
         const { ctx } = this;
         const result = await ctx.model.Project.find();
-        console.log(result)
         ctx.body = JSON.stringify({
             status: 200,
             attachment: {
-                data: result
+                data: result.map(item => {
+                    return {
+                        create_time:　item.create_time,
+                        name:　item.name,
+                        note:　item.note,
+                        root:　item.root,
+                        update_time:　item.update_time,
+                        id: item._id
+                    }
+                })
             }
         });
     }
@@ -20,6 +28,9 @@ class HomeController extends Controller {
     // 查询单个项目信息
     async queryOne() {
         const { ctx } = this;
+        console.log(ctx.request.body)
+        // const result = await ctx.model.Project.findOne({_id: ctx.body});
+
         ctx.body = JSON.stringify({
             status: 200,
             attachment: {
@@ -34,7 +45,14 @@ class HomeController extends Controller {
     async createPro() {
         const { ctx } = this;
         let _projectInfo = ctx.request.body;
-        let _project = new ctx.model.Project(_projectInfo)
+
+        
+
+        let _project = new ctx.model.Project({
+            ..._projectInfo,
+            create_time: new Date(),
+            update_time: new Date(),
+        })
         const result = await _project.save(err => {
             if(err) {
                 console.error('ctx.model.Project', err)

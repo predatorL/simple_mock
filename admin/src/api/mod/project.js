@@ -4,6 +4,10 @@ export function query(data) {
     return request.get('/project', data);
 }
 
+export function queryOne({id}) {
+    return request.get('/project' + id);
+}
+
 export function create(data) {
     return request.post('/project', data);
 }

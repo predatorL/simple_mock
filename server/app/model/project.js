@@ -5,6 +5,9 @@ module.exports = app => {
         name: {type: String},
         root: {type: String},
         note: {type: String},
+        rules: {type: Array},
+        create_time: {type: Date},
+        update_time: {type: Date}
     });
     return mongoose.model('Project', ProjectSchema);
 }

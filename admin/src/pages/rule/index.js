@@ -9,7 +9,17 @@ class View extends React.Component {
     constructor(props) {
         super(props);
         const {match} = props;
-        console.log(props.match);
+        this.id = match.params.id;
+    }
+
+    queryList() {
+        Api.project.queryOne({
+            id: this.id
+        })
+    }
+
+    componentWillMount() {
+
     }
 
     state = {

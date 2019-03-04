@@ -2,6 +2,8 @@ import React from 'react';
 import { Button } from 'antd';
 import CreatePro from './create';
 import List from './list';
+import Api from '@/api';
+import { listCols } from './_data';
 
 class View extends React.Component {
     constructor() {
@@ -9,7 +11,37 @@ class View extends React.Component {
     }
 
     state = {
-        modalVisible: false
+        modalVisible: false,
+        dataSource: [],
+        columns: listCols,
+    }
+
+
+    componentDidMount() {
+        this.queryList();
+    }
+
+    queryList = (page = 1) => {
+        Api.project.query().then(({ status, attachment }) => {
+            // TODO: 回来对res做下预处理
+            if (status === 200) {
+                this.setState({
+                    dataSource: attachment.data.map((item, i) => {
+                        return {
+                            ...item,
+                            key: i
+                        }
+                    })
+                })
+            }
+        })
+    }
+
+    modalClose = (isCreate) => {
+        if(isCreate) {
+            this.queryList();
+        }
+        this.setState({ modalVisible: false })
     }
 
     render() {
@@ -21,10 +53,9 @@ class View extends React.Component {
                 }}>
                     创建新项目
                 </Button>
-                <CreatePro close={e => {
-                    this.setState({ modalVisible: false })
-                }} visible={state.modalVisible}></CreatePro>
-                <List></List>
+                <CreatePro close={this.modalClose} visible={state.modalVisible}></CreatePro>
+                <List dataSource={state.dataSource}
+columns={state.columns}></List>
             </div>
         );
     }

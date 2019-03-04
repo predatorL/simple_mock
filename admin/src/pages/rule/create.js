@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Input, Button, Modal } from "antd";
 import Api from "@/api";
+
 class View extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
