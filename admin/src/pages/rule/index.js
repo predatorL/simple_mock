@@ -12,7 +12,16 @@ class View extends React.Component {
         const {match} = props;
         this.id = match.params.id;
     }
-
+    state = {
+        modalVisible: false,
+        loading: true,
+        source: {},
+        dataSource: []
+    }
+    componentWillMount() {
+        console.log('rule')
+        this.queryList();
+    }
     queryList() {
         Api.project.queryOne({
             id: this.id
@@ -31,16 +40,11 @@ class View extends React.Component {
         })
     }
 
-    componentWillMount() {
-        console.log('rule')
-        this.queryList();
-    }
-
-    state = {
-        modalVisible: false,
-        loading: true,
-        source: {},
-        dataSource: []
+    modalClose = (isCreate) => {
+        if(isCreate) {
+            this.queryList();
+        }
+        this.setState({ modalVisible: false })
     }
 
     render() {
@@ -55,8 +59,8 @@ class View extends React.Component {
             }}>
                 创建新规则
             </Button>
-            <CreatePro close={this.modalClose} visible={state.modalVisible}></CreatePro>
-            <List dataSource={state.dataSource}
+            <CreatePro pro_id={this.id} close={this.modalClose} visible={state.modalVisible}></CreatePro>
+            <List pro_id={this.id} dataSource={state.dataSource}
 columns={listCols}></List>
         </div>
         );

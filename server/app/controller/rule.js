@@ -19,23 +19,17 @@ class RuleController extends Controller {
     }
 
     // 创建项目
-    async createPro() {
+    async createRule() {
         const { ctx } = this;
-        let _projectInfo = ctx.request.body;
+        let _params = ctx.request.body;
+        console.log('createRule', _params);
 
-
-
-        let _project = new ctx.model.Project({
-            ..._projectInfo,
-            create_time: new Date(),
-            update_time: new Date(),
-        })
-        const result = await _project.save(err => {
-            if(err) {
-                console.error('ctx.model.Project', err)
+        const result = await ctx.model.Project.update({_id: _params.pro_id}, {
+            $push: {
+                rules: _params.data
             }
         });
-        // console.log('result', result)
+        console.log('result', result)
         ctx.body = JSON.stringify({
             status: 200,
             attachment: null,
@@ -44,7 +38,7 @@ class RuleController extends Controller {
     }
 
     // 更新项目信息
-    async updatePro() {
+    async updateRule() {
         const { ctx } = this;
         ctx.body = JSON.stringify({
             status: 200,
@@ -57,7 +51,7 @@ class RuleController extends Controller {
     }
 
     // 删除项目
-    async removePro() {
+    async removeRule() {
         const { ctx } = this;
         ctx.body = 'hi, egg1111';
     }

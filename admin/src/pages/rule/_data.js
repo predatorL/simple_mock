@@ -4,19 +4,24 @@ import history from '@/history';
 
 export const listCols = [
     {
-        title: '项目名',
+        title: '名称',
         dataIndex: 'name',
         key: 'name'
     },
     {
-        title: '根路径',
-        dataIndex: 'root',
-        key: 'root'
+        title: 'API',
+        dataIndex: 'api',
+        key: 'api'
     },
     {
-        title: '备注',
-        dataIndex: 'note',
-        key: 'note'
+        title: '请求方式',
+        dataIndex: 'type',
+        key: 'type'
+    },
+    {
+        title: '参数',
+        dataIndex: 'params',
+        key: 'params'
     },
     {
         title: '操作',

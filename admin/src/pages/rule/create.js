@@ -8,7 +8,10 @@ class View extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        Api.project.create(values).then(({ status, ...res }) => {
+        Api.rule.create({
+            data: values,
+            pro_id: this.props.pro_id
+        }).then(({ status, ...res }) => {
           if (status === 200) {
             message.success('创建项目成功');
             this.props.close(true);
@@ -30,18 +33,23 @@ class View extends React.Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Item>
             {getFieldDecorator("name", {
-              rules: [{ required: true, message: "请填写项目名" }]
-            })(<Input placeholder="项目名" />)}
+              rules: [{ required: true, message: "请填写api名称" }]
+            })(<Input placeholder="api名称" />)}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("root", {
-              rules: [{ required: true, message: "请填写项目根路径" }]
-            })(<Input placeholder="项目根路径,请求的路径组成部分" />)}
+            {getFieldDecorator("api", {
+              rules: [{ required: true, message: "请填写api" }]
+            })(<Input placeholder="api路径" />)}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator("note", {
-              rules: [{ required: true, message: "请填写备注" }]
-            })(<Input placeholder="备注" />)}
+            {getFieldDecorator("type", {
+              rules: [{ required: true, message: "请填请求方式" }]
+            })(<Input placeholder="请求方式" />)}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator("params", {
+              rules: [{ required: true, message: "请填请求参数" }]
+            })(<Input placeholder="请求参数" />)}
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
