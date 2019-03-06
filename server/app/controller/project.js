@@ -43,13 +43,12 @@ class ProjectController extends Controller {
         const { ctx } = this;
         let _projectInfo = ctx.request.body;
 
-
-
         let _project = new ctx.model.Project({
             ..._projectInfo,
             create_time: new Date(),
             update_time: new Date(),
         })
+
         const result = await _project.save(err => {
             if(err) {
                 console.error('ctx.model.Project', err)

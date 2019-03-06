@@ -22,14 +22,13 @@ class RuleController extends Controller {
     async createRule() {
         const { ctx } = this;
         let _params = ctx.request.body;
-        console.log('createRule', _params);
-
-        const result = await ctx.model.Project.update({_id: _params.pro_id}, {
+        let _rule = _params.data;
+        // TODO: 去重查询，防止重复的路径存在 在schema上添加method
+        const result = await ctx.model.Project.findOneAndUpdate({_id: _params.pro_id}, {
             $push: {
-                rules: _params.data
+                rules: _rule
             }
         });
-        console.log('result', result)
         ctx.body = JSON.stringify({
             status: 200,
             attachment: null,
