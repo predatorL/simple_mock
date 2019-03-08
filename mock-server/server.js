@@ -24,39 +24,41 @@ for (const _mid of middlewares) {
 // 组装结果
 app.use(async (ctx, next) => {
     await next();
-
-    ctx.body = {
-        type: ctx.request.method,
-        data: ctx.state.res
+    const {resData} = ctx.state;
+    if(resData.status) {
+        ctx.body = resData.data;
+    } else {
+        ctx.response.status = 404;
     }
+
 });
 
-router.get('/*', ctx => {
-    console.log('router', ctx.state.pathArr, ctx.query, ctx.request.body);
-    ctx.state.res = ctx.request.query;
-});
+// router.get('/*', ctx => {
+//     // console.log('router', ctx.state.pathArr, ctx.query, ctx.request.body);
+//     ctx.state.res = ctx.request.query;
+// });
 
-router.post('/*', ctx => {
-    console.log('router', ctx.request.path, ctx.request.query, ctx.request.body);
-    ctx.body = {
-        type: 'post',
-        data: ctx.request.body
-    };
-});
-router.put('/*', ctx => {
-    console.log('router', ctx.request.path, ctx.request.query, ctx.request.body);
-    ctx.body = {
-        type: 'put',
-        data: ctx.request.body
-    };
-});
-router.delete('/*', ctx => {
-    console.log('router', ctx.request.path, ctx.request.query, ctx.request.body);
-    ctx.body = {
-        type: 'delete',
-        data: ctx.request.body
-    };
-});
+// router.post('/*', ctx => {
+//     // console.log('router', ctx.request.path, ctx.request.query, ctx.request.body);
+//     ctx.body = {
+//         type: 'post',
+//         data: ctx.request.body
+//     };
+// });
+// router.put('/*', ctx => {
+//     // console.log('router', ctx.request.path, ctx.request.query, ctx.request.body);
+//     ctx.body = {
+//         type: 'put',
+//         data: ctx.request.body
+//     };
+// });
+// router.delete('/*', ctx => {
+//     // console.log('router', ctx.request.path, ctx.request.query, ctx.request.body);
+//     ctx.body = {
+//         type: 'delete',
+//         data: ctx.request.body
+//     };
+// });
 
 app.use(router.routes()).use(router.allowedMethods());
 

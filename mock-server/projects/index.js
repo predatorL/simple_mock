@@ -1,10 +1,8 @@
 module.exports = {
     test1: {
-        '/test': {
-            'post': {
-                name: 'aaaa',
-                age: 23
-            }
+        'GET /test': {
+            name: 'aaaa',
+            age: 23
         }
     }
 }
