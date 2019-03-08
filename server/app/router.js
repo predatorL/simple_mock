@@ -11,6 +11,7 @@ module.exports = app => {
     router.post('/api/project', controller.project.createPro);
     router.put('/api/project', controller.project.updatePro);
     router.delete('/api/project', controller.project.removePro);
+    router.delete('/api/project/update-mock', controller.project.updateMock);
     // rule
     // router.get('/api/rule', controller.project.getList);
     router.get('/api/rule/:id', controller.rule.queryOne);

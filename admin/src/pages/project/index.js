@@ -12,12 +12,11 @@ class View extends React.Component {
 
     state = {
         modalVisible: false,
-        dataSource: [],
-    }
-
+        dataSource: []
+    };
 
     componentDidMount() {
-        console.log('project')
+        console.log('project');
         this.queryList();
     }
 
@@ -30,32 +29,37 @@ class View extends React.Component {
                         return {
                             ...item,
                             key: i
-                        }
+                        };
                     })
-                })
+                });
             }
-        })
-    }
+        });
+    };
 
-    modalClose = (isCreate) => {
-        if(isCreate) {
+    modalClose = isCreate => {
+        if (isCreate) {
             this.queryList();
         }
-        this.setState({ modalVisible: false })
-    }
+        this.setState({ modalVisible: false });
+    };
 
     render() {
         const { state } = this;
         return (
             <div className="view-project">
-                <Button type="primary"  onClick={e => {
-                    this.setState({ modalVisible: true })
-                }}>
-                    创建新项目
-                </Button>
-                <CreatePro close={this.modalClose} visible={state.modalVisible}></CreatePro>
-                <List dataSource={state.dataSource}
-columns={listCols}></List>
+                <div className="query-form">
+                    <Button
+                        type="primary"
+                        onClick={e => {
+                            this.setState({ modalVisible: true });
+                        }}
+                    >
+                        创建新项目
+                    </Button>
+                </div>
+
+                <CreatePro close={this.modalClose} visible={state.modalVisible} />
+                <List dataSource={state.dataSource} columns={listCols} />
             </div>
         );
     }

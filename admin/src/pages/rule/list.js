@@ -13,7 +13,7 @@ class View extends React.Component {
 
     render() {
         const { dataSource, columns } = this.props;
-        return <Table dataSource={dataSource} columns={columns} />;
+        return <Table rowKey={r => r._id} dataSource={dataSource} columns={columns} />;
     }
 }
 
