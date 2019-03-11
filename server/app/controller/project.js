@@ -81,15 +81,16 @@ class ProjectController extends Controller {
     // 更新mock数据
     async updateMock() {
         const { ctx } = this;
-        const { id } = ctx.params;
-        console.log(id)
-        // const result = await ctx.model.Project.findOne({ _id: id });
-        // ctx.body = JSON.stringify({
-        //     status: 200,
-        //     attachment: {
-        //         data: result
-        //     }
-        // });
+        const { id } = ctx.request.body;
+
+        const result = await ctx.model.Project.findOne({ _id: id });
+        console.log('updateMock', result)
+        ctx.body = JSON.stringify({
+            status: 200,
+            attachment: {
+                data: 111
+            }
+        });
     }
 }
 

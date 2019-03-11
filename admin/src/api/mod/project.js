@@ -20,6 +20,6 @@ export function remove(data) {
     return request.delete('/project', data);
 }
 
-export function updateMock({data}) {
+export function updateMock(data) {
     return request.post('/project/update-mock', data);
 }
