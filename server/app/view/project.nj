@@ -1,0 +1,5 @@
+{% extends "./template/layout.nj" %}
+
+{% block body %}
+<main class="body">This is the body side!</main>
+{% endblock %}

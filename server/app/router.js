@@ -3,7 +3,11 @@
 /**
  * @param {Egg.Application} app - egg application
  */
-module.exports = app => {
+
+ /**
+ * api
+ */
+function api(app) {
     const { router, controller } = app;
     // project
     router.get('/api/project', controller.project.getList);
@@ -18,4 +22,19 @@ module.exports = app => {
     router.post('/api/rule', controller.rule.createRule);
     router.put('/api/rule', controller.rule.updateRule);
     router.delete('/api/rule', controller.rule.removeRule);
+}
+/**
+ * view
+ */
+function view(app) {
+    const { router, controller } = app;
+    router.get('/project', controller.view.project);
+    router.get('/rule', controller.view.rule);
+    router.get('/env', controller.view.env);
+    router.get('/login', controller.view.login);
+}
+
+module.exports = app => {
+    api(app);
+    view(app);
 };
