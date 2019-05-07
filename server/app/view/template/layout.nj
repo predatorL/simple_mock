@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>{{ title }}</title>
-        <link rel="stylesheet" href="/public/element-ui@26.3/index.js">
+        <link rel="stylesheet" href="/public/element-ui-2.6.3/index.js">
         <script src="/public/vue-2.6.10-min.js"></script>
-        <script src="/public/element-ui@26.3/index.js"></script>
+        <script src="/public/element-ui-2.6.3/index.js"></script>
     </head>
     <body>
         {% block body %} This is the default content {% endblock %}
